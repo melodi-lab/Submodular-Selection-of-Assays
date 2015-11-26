@@ -22,5 +22,3 @@ The path for the file where the selected list of items is to stored.
 A sample command for running the code is
 
 python greedy_selection_facility_location.py -i Generic_Aggregation_Sim_Matrix.txt -n `less Assay_list.txt | wc -l` -k 10 -o output_selected_list -r Assay_list.txt
-
-Test
