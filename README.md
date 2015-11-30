@@ -27,5 +27,5 @@ This command outputs the list of assay types selected from all assay types using
 
 To output the list of assay types selected from only the histone modification assay types using SSA in the data generation scenario, please run the following command:
 
-python greedy_selection_facility_location.py -i Histone_Modification_Sim_Matrix.txt -n `less  | wc -l` -k 5 -o output_selected_list -r 
+python greedy_selection_facility_location.py -i Histone_Modification_Sim_Matrix.txt -n `less Histone_modification_assay_list.txt | wc -l` -k 5 -o output_selected_list -r Histone_modification_assay_list.txt 
 
