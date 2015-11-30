@@ -13,7 +13,7 @@ Total number of items in the data set.
 Number of items to select. 
 
 -- Reference name list:
-An example of the reference name list can be found in the file "Assay_list.txt".
+An example of the reference name list can be found in the file "All_assay_list.txt".
 The reference name list should be stored in an ASCII format file. The file has N lines with each line being the referenece name for the corresponding item.  
 
 -- Output file name:
@@ -21,4 +21,4 @@ The path for the file where the selected list of items is to stored.
 
 A sample command for running the code is
 
-python greedy_selection_facility_location.py -i Generic_Aggregation_Sim_Matrix.txt -n `less Assay_list.txt | wc -l` -k 10 -o output_selected_list -r Assay_list.txt
+python greedy_selection_facility_location.py -i Generic_Aggregation_Sim_Matrix.txt -n `less All_assay_list.txt | wc -l` -k 10 -o output_selected_list -r All_assay_list.txt
