@@ -21,18 +21,12 @@ The path for the file where the selected list of items is to stored.
 
 A sample command for running the code is
 
-python greedy_selection_facility_location.py -i Generic_Aggregation_Sim_Matrix.txt -n `less All_assay_list.txt | wc -l` -k 10 -o output_selected_list -r All_assay_list.txt
-
-
-This command outputs the list of assay types selected from all assay types using SSA approach in the data generation scenario.
-
-To output the list of assay types selected from only the histone modification assay types using SSA-future, please run the following command:
-
 python greedy_selection_facility_location.py -i Histone_Modification_Sim_Matrix.txt -n `less Histone_modification_assay_list.txt | wc -l` -k 5 -o output_selected_list -r Histone_modification_assay_list.txt 
+
+This command outputs the list of assay types selected from only the histone modification assay types using SSA-future.
 
 To output the list of assay types selected from only the transcription factor assay types using SSA-future, please run the following command:
 
 python greedy_selection_facility_location.py -i Transcription_factor_assay_Sim_Matrix.txt -n `less Transcription_factor_assay_list.txt | wc -l` -k 5 -o output_selected_list -r Transcription_factor_assay_list.txt 
-
 
 
