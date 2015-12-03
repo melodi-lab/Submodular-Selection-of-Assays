@@ -19,7 +19,7 @@ An example of the assay name file can be found in the file `assay_names_<type>.t
 
 * Similarity matrix (--sim):
 A text file containing a symmetric square matrix of size N by N, with each entry being non-negative. The file should have N lines, with each line corresponding to a row of the matrix, and with columns delimited by spaces. 
-An example similarity matrix can be found in the file `similarity_matrix_all.txt`. 
+An example similarity matrix can be found in the file `similarity_matrix_<type>.txt`.
 
 * Output file name (--output):
 The path for the file where the selected list of items is to stored. 
