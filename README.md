@@ -6,8 +6,8 @@ Kai Wei * , Maxwell W. Libbrecht * , Jeffrey A Bilmes, William S. Noble. "Evalua
 
 Get the most recent version on [github](https://github.com/kaiwei123/Submodular-Selection-of-Assays).
 
-* Author: Kai Wei
-* Email: kaiwei@uw.edu
+* Author: Kai Wei, Maxwell Libbrecht
+* Email: kaiwei@uw.edu, maxwl@cs.washington.edu
 * Melodi Lab, University of Washington, Seattle
 
 Arguments
