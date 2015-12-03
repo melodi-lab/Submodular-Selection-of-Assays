@@ -1,32 +1,32 @@
-# Submodular-Selection-of-Assays
+Submodular-Selection-of-Assays (SSA)
+==
 
-The input arguments to the python script include the following:  
+Please see the following reference for more details:
+Kai Wei * , Maxwell W. Libbrecht * , Jeffrey A Bilmes, William S. Noble. "Evaluation and selection of panels of genomics assays." Submitted.
 
--- Similarity matrix:
-An example of the similarity matrix can be found in the file "Generic_Aggregation_Sim_Matrix.txt". 
-The input similarity matrix should be a symmetric square matrix of size N*N with each entry being non-negative. The matrix is stored in an ASCII format file. The file has N lines, with each line corresponding to a row of the matrix. All entries in the file are delimited with a space. 
+Get the most recent version on [github](https://github.com/kaiwei123/Submodular-Selection-of-Assays).
 
--- n: 
-Total number of items in the data set. 
+* Author: Kai Wei
+* Email: kaiwei@uw.edu
+* Melodi Lab, University of Washington, Seattle
 
--- k:
-Number of items to select. 
+Arguments
+--
 
--- Reference name list:
-An example of the reference name list can be found in the file "All_assay_list.txt".
-The reference name list should be stored in an ASCII format file. The file has N lines with each line being the referenece name for the corresponding item.  
+* List of assay names (--names):
+A text file with N lines, with each line being an assay name.  
+An example of the assay name file can be found in the file `assay_names_all.txt`.
 
--- Output file name:
+* Similarity matrix (--sim):
+A text file containing a symmetric square matrix of size N by N, with each entry being non-negative. The file should have N lines, with each line corresponding to a row of the matrix, and with columns delimited by spaces. 
+An example similarity matrix can be found in the file `similarity_matrix_all.txt`. 
+
+* Output file name (--output):
 The path for the file where the selected list of items is to stored. 
 
-A sample command for running the code is
+Sample command line
+--
 
-python greedy_selection_facility_location.py -i Histone_Modification_Sim_Matrix.txt -n `less Histone_modification_assay_list.txt | wc -l` -k 5 -o output_selected_list -r Histone_modification_assay_list.txt 
-
-This command outputs the list of assay types selected from only the histone modification assay types using SSA-future.
-
-To output the list of assay types selected from only the transcription factor assay types using SSA-future, please run the following command:
-
-python greedy_selection_facility_location.py -i Transcription_factor_assay_Sim_Matrix.txt -n `less Transcription_factor_assay_list.txt | wc -l` -k 5 -o output_selected_list -r Transcription_factor_assay_list.txt 
+    python greedy_selection_facility_location.py --names=assay_names_all.txt --sim=similarity_matrix_all.txt --output=ordered_assay_list.txt
 
 
