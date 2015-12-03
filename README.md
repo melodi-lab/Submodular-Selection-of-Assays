@@ -15,7 +15,7 @@ Arguments
 
 * List of assay names (--names):
 A text file with N lines, with each line being an assay name.  
-An example of the assay name file can be found in the file `assay_names_all.txt`.
+An example of the assay name file can be found in the file `assay_names_<type>.txt` where the type is one of "histonemods", "tfs" (transcription factors) or "all".
 
 * Similarity matrix (--sim):
 A text file containing a symmetric square matrix of size N by N, with each entry being non-negative. The file should have N lines, with each line corresponding to a row of the matrix, and with columns delimited by spaces. 
