@@ -114,11 +114,13 @@ def main(argv):
         index = 1;
         priority_q = PriorityQueue()
         prev_func_val = 0;
+        modular_score_array = [];
         # initialize the priority queue
         for item in range(0,N_ground,1):
             func_val = facility_location_gain(sim_matrix, item, precompute, N_ground)
             data_item = (item, func_val)
             priority_q.push(data_item, func_val)
+            modular_score_array.append(func_val);
 
         while (not priority_q.isempty()):
             max_val = 0;
@@ -136,9 +138,10 @@ def main(argv):
                 priority_q.push(new_data_item, new_func_gain)
             else:
                 assay_type_order.append(data_item[0])
+                add_gain = new_func_val - prev_func_val;
                 prev_func_val = new_func_val
                 assert (abs(new_func_val - facility_location_evaluate(sim_matrix, assay_type_order, N_ground)) < 1e-3)
-                print "Selecting item ", reference_list[data_item[0]].strip('\n'),'. After update, the facility location objective value is ', new_func_val
+                print "Round:", len(assay_type_order),"selecting ", reference_list[data_item[0]].strip('\n'),'. After update the objective value is ', new_func_val, ' with gain', add_gain, 'and singleton value', modular_score_array[data_item[0]];
 
                 # update the precompute
                 for index in range(0, N_ground, 1):
@@ -146,8 +149,36 @@ def main(argv):
                         precompute[index] = sim_matrix[index][data_item[0]]
 
         ########################################
+        # When the algorithm terminates, add the
+        # extra information about the swapping gain
+        ########################################
+                        
+        selection_budget = 5
+        print "#############################"
+        print "#############################"
+        print "Next, we restrict ourselves to the top ", selection_budget, "selected items. We report the item other than these items, when swapped with each of the top item, introducing the minimum reduction in the objective value"
+        selected_list = assay_type_order[0:selection_budget]
+        remain_set = assay_type_order[selection_budget:]
+        for remove_item in selected_list:
+            min_swap_reduction = float("inf")
+            swap_item = -1
+
+
+            for new_item in remain_set:
+                new_list = selected_list[:]
+                new_list.remove(remove_item)
+                new_list.append(new_item)
+                swap_reduction = facility_location_evaluate(sim_matrix, selected_list, N_ground) - facility_location_evaluate(sim_matrix, new_list, N_ground)
+                if swap_reduction < min_swap_reduction:
+                    min_swap_reduction = swap_reduction
+                    swap_item = new_item
+            print "Item ", reference_list[remove_item].strip('\n'), 'swapped with ', reference_list[swap_item].strip('\n'), 'with the objective value reduction as', min_swap_reduction
+
+
+        ########################################
         # Write ordered assay types to file
         ########################################
+
 
         try:
             f = open(args.output, 'w')
