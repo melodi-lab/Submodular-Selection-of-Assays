@@ -1,0 +1,9 @@
+H3K4me3
+CTCF
+GATA3
+TCF7L2
+E2F1
+ZNF217
+RepliSeq
+DnaseSeq
+FaireSeq

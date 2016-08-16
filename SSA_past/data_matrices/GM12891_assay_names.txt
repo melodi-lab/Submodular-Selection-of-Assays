@@ -1,0 +1,9 @@
+TAF1
+POLR2A
+YY1
+SPI1
+PAX5
+POU2F2
+NFKB1
+DnaseSeq
+FaireSeq
