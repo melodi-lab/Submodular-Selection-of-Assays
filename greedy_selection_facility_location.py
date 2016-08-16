@@ -8,6 +8,7 @@
 import sys, getopt
 import heapq
 import argparse
+import numpy as np
 
 class PriorityQueue:
     def __init__(self):
@@ -53,6 +54,7 @@ def main(argv):
         parser = argparse.ArgumentParser(description="This script implements the Submodular Selection of Assays (SSA) method for selecting a panel of genomics assays.  Takes as input a list of assay names and a matrix of assay-assay similarity values.  Outputs an ordered list of assay types, where the top K items in the list is the chosen panel of size K.")
         parser.add_argument("--sim", required=True, help="Path to symmetric matrix of nonnegative similarity values, with columns delimited by spaces and rows delimited by newlines. The numbers of rows, columns and assay names must be identical.")
         parser.add_argument("--names", required=True, help="Path to newline-delimited file specifying the assay type names.")
+        parser.add_argument("--selectFrom", required=False, help="Path to newline-delimited file specifying the assay types that the algorithm is selecting from. This argument is optional. When specified, this list should be contained by --names. When not specified, the algorithm selects from the entire list of assay types.")
         parser.add_argument("--output", required=True, help="Output path")
         args = parser.parse_args()
 
@@ -68,6 +70,31 @@ def main(argv):
         reference_list = f.readlines()
         N_ground = len(reference_list)
         f.close()
+
+        if args.selectFrom != None:
+            try:
+                f = open(args.selectFrom, 'r')
+            except IOError:
+                raise Exception('ERROR: Could not open the assay names file: {0}'.format(args.selectFrom))
+                sys.exit(1)
+            selectFromList = f.readlines()
+            dictSelectFrom = {}
+            for assay in selectFromList:
+                dictSelectFrom[assay] = True
+        else:
+            dictSelectFrom = {}
+            for assay in reference_list:
+                dictSelectFrom[assay] = True
+
+        indexList = []
+        index = 0
+        for assay in reference_list:
+            if assay in dictSelectFrom:
+                indexList.append(index)
+
+            index = index + 1
+        
+        #print (indexList)
 
         ########################################
         # Read similarity matrix
@@ -137,11 +164,15 @@ def main(argv):
                 new_data_item = (data_item[0], new_func_gain)
                 priority_q.push(new_data_item, new_func_gain)
             else:
+                if reference_list[data_item[0]] not in dictSelectFrom:
+                    continue
+                
                 assay_type_order.append(data_item[0])
                 add_gain = new_func_val - prev_func_val;
                 prev_func_val = new_func_val
                 assert (abs(new_func_val - facility_location_evaluate(sim_matrix, assay_type_order, N_ground)) < 1e-3)
-                print "Round:", len(assay_type_order),"selecting ", reference_list[data_item[0]].strip('\n'),'. After update the objective value is ', new_func_val, ' with gain', add_gain, 'and singleton value', modular_score_array[data_item[0]];
+                #print "Round:", len(assay_type_order),"selecting ", reference_list[data_item[0]].strip('\n'),'. After update the objective value is ', new_func_val, ' with gain', add_gain, 'and singleton value', modular_score_array[data_item[0]];
+                print "Round:", len(assay_type_order)," ", reference_list[data_item[0]].strip('\n'),'objective =', new_func_val, ', gain=',add_gain, ', mod_val=', modular_score_array[data_item[0]];
 
                 # update the precompute
                 for index in range(0, N_ground, 1):
