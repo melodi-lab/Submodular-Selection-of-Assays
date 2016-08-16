@@ -34,3 +34,14 @@ Data preprocessing and similarity computation
 
 For completeness, we also provide the source code for performing data preprocessing and similarity computation on the genomics assay data. Please refer to `data_preprocessing_and_similarity_compute.py` for details. 
 
+Submodular Assay Selection under past setting (SSA-past)
+--
+
+We provide the source code for running assay selection under the past setting, where the goal is to select from a list of assays already performed on a given cell type. The script is found at `SSA_past/greedy_selection_facility_location_SSA_past.py`.
+
+Sample command line
+--
+    
+    cd SSA_past;
+    python greedy_selection_facility_location_SSA_past.py --cellType=K562 --output=ordered_assay_list.txt
+    
