@@ -23,16 +23,17 @@ An example of the assay name file can be found in the file `assay_names_<type>.t
 A text file containing a symmetric square matrix of size N by N, with each entry being non-negative. The file should have N lines, with each line corresponding to a row of the matrix, and with columns delimited by spaces. 
 An example similarity matrix can be found in the file `similarity_matrix_<type>.txt`.
 
+* Assay types to select from (--selectFrom) (optional):
+A subset of the assay types that should be selected from.
+The file should be a newline-delimited list of names, where each name is included in the `--names` file.
+If not specified, all assay types are included.
+
 * Output file name (--output):
 The path for the file where the selected list of items is to stored. 
 
 ### Sample command line
 
     python greedy_selection_facility_location.py --names=assay_names_all.txt --sim=similarity_matrix_all.txt --output=ordered_assay_list.txt
-
-### Data preprocessing and similarity computation
-
-For completeness, we also provide the source code for performing data preprocessing and similarity computation on the genomics assay data. Please refer to `data_preprocessing_and_similarity_compute.py` for details. 
 
 greedy_selection_facility_location_SSA_past.py
 --
@@ -72,3 +73,6 @@ Directory for the output files.
 
 The script will put two files in the output directory: `similarity.tab` and `names.txt`. These files can be input into `greedy_selection_facility_location.py` using the `--sim` and `--names` arguments respectively.
 
+### Sample command line
+
+    python similarity_matrix.py --tracks=example_tracks.txt --coords=example_coords.txt --output=out
