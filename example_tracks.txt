@@ -1,0 +1,3 @@
+/net/noble/vol2/home/maxwl/mp/data/common/genomedata-signal-jan2011	AllLabsHistoneHuvecH3k27me3StdAln_4Reps.norm5	HUVEC
+/net/noble/vol2/home/maxwl/mp/data/common/genomedata-signal-jan2011	AllLabsHistoneK562H3k27me3StdAln_6Reps.norm5	K562
+/net/noble/vol2/home/maxwl/mp/data/common/genomedata-signal-jan2011	AllLabsHistoneGm12878H3k36me3StdAln_4Reps.norm5	GM12878

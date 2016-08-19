@@ -93,7 +93,7 @@ def main(argv):
                 indexList.append(index)
 
             index = index + 1
-        
+
         #print (indexList)
 
         ########################################
@@ -166,7 +166,7 @@ def main(argv):
             else:
                 if reference_list[data_item[0]] not in dictSelectFrom:
                     continue
-                
+
                 assay_type_order.append(data_item[0])
                 add_gain = new_func_val - prev_func_val;
                 prev_func_val = new_func_val
@@ -183,7 +183,7 @@ def main(argv):
         # When the algorithm terminates, add the
         # extra information about the swapping gain
         ########################################
-                        
+
         selection_budget = 5
         print "#############################"
         print "#############################"
@@ -193,7 +193,6 @@ def main(argv):
         for remove_item in selected_list:
             min_swap_reduction = float("inf")
             swap_item = -1
-
 
             for new_item in remain_set:
                 new_list = selected_list[:]
